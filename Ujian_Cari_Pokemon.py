@@ -31,7 +31,7 @@ def notFound():
     return render_template('error.htm')
 
 @app.errorhandler(404)
-def error():
+def notFound404(error):
     return render_template('error.htm')
 
 if __name__=='__main__':
