@@ -7,17 +7,17 @@ app=Flask(__name__)
 def home():
     return render_template('home.htm')
 
-@app.route('/hasil', methods=['POST','GET'])
+@app.route('/hasil', methods=['POST'])
 def post():
     name=request.form['nama']
     url='https://pokeapi.co/api/v2/pokemon/'+name
     poke=requests.get(url)
-    # print(type(poke))
-    # print(str(poke))
     if str(poke)=='<Response [404]>':
         return redirect('/NotFound')
     filenama=poke.json()['forms']
-    nama=filenama[0]['name'].replace(filenama[0]['name'][0],filenama[0]['name'][0].upper())
+    kecil=filenama[0]['name'][0]
+    besar=filenama[0]['name'][0].upper()
+    nama=filenama[0]['name'].replace(kecil,besar)
     filegambar=poke.json()['sprites']
     gambar=filegambar['front_default']
     idPoke=poke.json()['id']
