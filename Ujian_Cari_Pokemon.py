@@ -14,10 +14,9 @@ def post():
     poke=requests.get(url)
     if str(poke)=='<Response [404]>':
         return redirect('/NotFound')
-    filenama=poke.json()['forms']
-    kecil=filenama[0]['name'][0]
-    besar=filenama[0]['name'][0].upper()
-    nama=filenama[0]['name'].replace(kecil,besar)
+    filenama=poke.json()['name']
+    besar=filenama[0].upper()
+    nama=besar+filenama[1:]
     filegambar=poke.json()['sprites']
     gambar=filegambar['front_default']
     idPoke=poke.json()['id']
